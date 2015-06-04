@@ -1,0 +1,43 @@
+Trabajo hecho por Chin Ho y Adrià González. 
+
+Práctica WebCam con Procissing 2.2.1.
+
+Nuestro juego se basa en un pica pared de toda la vida. Hay dos tipos de estados, uno en el que el profesor está distraido, y otro en el que está mirando al jugador. 
+El juego se basa en hacer el burro moviendose lo máximo posible por delante de la webCam para obtener más puntuación. 2 segundos antes de que el profesor mire al 
+jugador, se oye un sonido para indicarnos que paremos de movernos. Si mientras el profesor nos mira nos movemos lo suficiente, nos pillará, nos suspenderá y se habrá
+acabado el juego.
+
+Lo que acabamos de contar es la base del juego, pero aparte hemos añadido más detalles para que sea mejor, más realista. Hemos añadido un menú en el que se puede escoger
+el profesor con el que queremos jugar. Hay tres botones, uno para Óscar, otro para Germán y otro para Jordi. Los botones cambian de color al pasar por encima para que 
+sepamos cual estamos elegiendo, para hacerlo más vistoso. El menú también dispone de un background de una clase, para representar la ambientación en la que nos encontramos.
+
+En la pantalla del juego se ve al jugador en tiempo real para que se oriente un poco sobre si se mueve mucho o muy poco. Arriba a la derecha tenemos un contador en el que
+se nos indica la puntuación total acumulada en la partida. Abajo a la derecha aparece la foto de un profesor, la foto variará dependiendo del profesor que se haya escogido
+en el menú principal.
+
+Una vez nos han pillado, se sigue viendo al jugador pero el filtro de la pantalla es gris. También aparece un mensaje, en nuestro caso WASTED, para saber que el jugador ha 
+sido pillado, y por lo tanto, ha perdido. En la parte inferior de la pantalla, aparecen las opciones disponibles, ya sea volver al menú de selección de profesor pulsando 
+ENTER, o bien salir del juego y cerrar la ejecución del código con ESC.
+
+Como lo hemos hecho?
+
+Primer de todo, teniamos que detectar cuando algo o alguien se movia por la cámara. Para hacer esto hemos revisado píxel por píxel toda la pantalla i los hemos comparado con
+los píxeles del frame anterior para ver la diferencia en el RGB. Si supera un treshold que hemos definido, en un tercer fotograma se pone un píxel en negro. Si no ha superado el treshold
+lo pondremos en blanco. 
+
+Para determinar el sistema de captura, si el profesor nos ve o no, hemos definido una tolerancia que si es superada hará que perdamos el juego. Ésta tolerancia es un tanto por 
+ciento de los píxeles del frame en blanco y negro. El tanto por ciento de movimiento del jugador lo calculamos para poder compararlo con la tolerancia y saber si se está moviendo demasiado o no. 
+Este sistema de porcentage también lo hemos usado para la puntuación. Si el jugador no se mueve un mínimo, en este caso hemos puesto la misma tolerancia que la de detección, la punutuación no
+augmenta, y a medida que nos movemos más se nos da más puntos.
+
+El sprite del profesor que se va moviendo lo hemos hecho poniendo imágenes en un array, de esta forma a medida que avanza el tiempo, gracias a unas condiciones, hemos hecho que las 
+imágenes vayan cambiando. Las imágenes de los profesores estan situadas en diferentes carpetas del data. Las imágenes de cada profesor tienen el mismo nombre. Para alternar entre 
+profesores lo que hemos hecho ha sido hacer el menú de selección de personage. Cada botón al ser pulsado envia el nombre de la carpeta donde tiene que ir a buscar las imágenes.
+
+Cómo jugar?
+
+1.Dale al botón de ejecutar.
+2.Selecciona un profesor.
+3.Mueveta por pantalla mientras no te miren y quedate quieto cuando te estén mirando.
+4.Si te pillan haz otra partida.
+
